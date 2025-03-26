@@ -5,7 +5,7 @@ import 'app_typography.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: AppColors.background,
+    scaffoldBackgroundColor: AppColors.surface,
     colorScheme: const ColorScheme(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
@@ -30,6 +30,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primary,
       foregroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       elevation: 0,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(

@@ -23,10 +23,11 @@ class AppSpacing {
   
   // Insets for consistent spacing between elements
   static SizedBox get verticalGapTiny => SizedBox(height: 0.5.h);
-  static SizedBox get verticalGapSmall => SizedBox(height: 1.h);
+  static SizedBox get verticalGapSmall => SizedBox(height: 1.5.h);
   static SizedBox get verticalGapMedium => SizedBox(height: 2.h);
   static SizedBox get verticalGapLarge => SizedBox(height: 3.h);
-  static SizedBox get verticalGapXLarge => SizedBox(height: 5.h);
+  static SizedBox get verticalGapXLarge => SizedBox(height: 5.5.h);
+  static SizedBox get verticalGapXXLarge => SizedBox(height: 8.h);
   
   static SizedBox get horizontalGapTiny => SizedBox(width: 1.w);
   static SizedBox get horizontalGapSmall => SizedBox(width: 2.w);

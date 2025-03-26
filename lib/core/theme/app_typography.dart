@@ -32,19 +32,21 @@ class AppTypography {
   );
   
   static TextStyle get h3 => TextStyle(
-    fontSize: 20.sp,
-    fontWeight: FontWeight.bold,
+    fontSize: 21.sp,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Roboto',
     color: AppColors.textPrimary,
     height: 1.3,
+    letterSpacing: -1.5
   );
   
   static TextStyle get h4 => TextStyle(
     fontSize: 18.sp,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Roboto',
     color: AppColors.textPrimary,
     height: 1.35,
+    letterSpacing: -1.3
   );
   
   // Body text
