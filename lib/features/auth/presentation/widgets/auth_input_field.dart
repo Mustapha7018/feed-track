@@ -13,14 +13,22 @@ class AuthInputField extends StatefulWidget {
   final bool isEnabled;
   final TextInputAction? textInputAction;
   final Function()? onEditingComplete;
-  final Widget? prefix;
-  final IconData? prefixIcon;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final EdgeInsetsGeometry? contentPadding;
+  final double? horizontalPadding;
+  final double? verticalPadding;
+  final double? leftPadding;
+  final double? topPadding;
+  final double? rightPadding;
+  final double? bottomPadding;
+  final TextStyle? hintTextStyle;
   final int? maxLines;
   final int? minLines;
   final Color? fillColor;
   final bool autoFocus;
   final String? errorText;
+  final double borderRadius;
 
   const AuthInputField({
     super.key,
@@ -34,14 +42,22 @@ class AuthInputField extends StatefulWidget {
     this.isEnabled = true,
     this.textInputAction,
     this.onEditingComplete,
-    this.prefix,
+    this.suffixIcon,
     this.prefixIcon,
     this.contentPadding,
+    this.horizontalPadding,
+    this.verticalPadding,
+    this.leftPadding,
+    this.topPadding,
+    this.rightPadding,
+    this.bottomPadding,
+    this.hintTextStyle,
     this.maxLines = 1,
     this.minLines,
     this.fillColor,
     this.autoFocus = false,
     this.errorText,
+    this.borderRadius = 10.0,
   });
 
   @override
@@ -50,6 +66,52 @@ class AuthInputField extends StatefulWidget {
 
 class _AuthInputFieldState extends State<AuthInputField> {
   bool _obscureText = true;
+
+  // Helper method to calculate the effective padding
+  EdgeInsetsGeometry _getEffectivePadding() {
+    // If contentPadding is provided, use it directly
+    if (widget.contentPadding != null) {
+      return widget.contentPadding!;
+    }
+    
+    // If any specific padding values are provided, create a custom EdgeInsets
+    if (widget.horizontalPadding != null || 
+        widget.verticalPadding != null ||
+        widget.leftPadding != null ||
+        widget.topPadding != null ||
+        widget.rightPadding != null ||
+        widget.bottomPadding != null) {
+      
+      // Start with all edges at 0
+      double left = 0;
+      double top = 0;
+      double right = 0;
+      double bottom = 0;
+      
+      // Apply horizontal padding if provided
+      if (widget.horizontalPadding != null) {
+        left = widget.horizontalPadding!;
+        right = widget.horizontalPadding!;
+      }
+      
+      // Apply vertical padding if provided
+      if (widget.verticalPadding != null) {
+        top = widget.verticalPadding!;
+        bottom = widget.verticalPadding!;
+      }
+      
+      // Override with specific edge padding if provided
+      if (widget.leftPadding != null) left = widget.leftPadding!;
+      if (widget.topPadding != null) top = widget.topPadding!;
+      if (widget.rightPadding != null) right = widget.rightPadding!;
+      if (widget.bottomPadding != null) bottom = widget.bottomPadding!;
+      
+      return EdgeInsets.fromLTRB(left, top, right, bottom);
+    }
+    
+    // Default padding if nothing specific is provided
+    return EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.9.h);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +136,7 @@ class _AuthInputFieldState extends State<AuthInputField> {
       ),
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: TextStyle(
+        hintStyle: widget.hintTextStyle ?? TextStyle(
           color: AppColors.textHint,
           fontSize: 16.sp,
         ),
@@ -85,61 +147,59 @@ class _AuthInputFieldState extends State<AuthInputField> {
         ),
         filled: false,
         fillColor: widget.fillColor ?? Colors.transparent,
-        contentPadding: widget.contentPadding ??
-            EdgeInsets.symmetric(horizontal: 4.w, vertical: 1.9.h),
-        prefixIcon: widget.prefixIcon != null
-            ? Icon(widget.prefixIcon, color: AppColors.textHint)
-            : widget.prefix,
-        suffixIcon: widget.isPassword
-            ? IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: AppColors.textHint,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
-            : null,
+        contentPadding: _getEffectivePadding(),
+        prefixIcon: widget.prefixIcon,
+        suffixIcon: widget.suffixIcon ??
+            (widget.isPassword
+                ? IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: AppColors.textHint,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  )
+                : null),        
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: const BorderSide(
             color: AppColors.secondaryLight,
             width: 1.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: const BorderSide(
             color: AppColors.secondaryLight,
             width: 1.0,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: const BorderSide(
             color: AppColors.primary,
             width: 1.5,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: const BorderSide(
             color: AppColors.error,
             width: 1.0,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: const BorderSide(
             color: AppColors.error,
             width: 1.5,
           ),
         ),
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
           borderSide: BorderSide(
             color: AppColors.secondaryLight.withAlpha(128),
             width: 1.0,

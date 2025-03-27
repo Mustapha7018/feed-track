@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomDropdown extends StatefulWidget {
   final String hintText;
+  final TextStyle? hintTextStyle;
   final List<String> items;
   final String? value;
   final Function(String) onChanged;
@@ -19,6 +20,7 @@ class CustomDropdown extends StatefulWidget {
   const CustomDropdown({
     super.key,
     required this.hintText,
+    this.hintTextStyle,
     required this.items,
     this.value,
     required this.onChanged,
@@ -45,7 +47,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
             color: AppColors.secondaryLight,
             width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Padding(
           padding: widget.contentPadding ??
@@ -65,12 +67,16 @@ class _CustomDropdownState extends State<CustomDropdown> {
               Expanded(
                 child: Text(
                   widget.value ?? widget.hintText,
-                  style: TextStyle(
-                    color: widget.value != null
-                        ? AppColors.textHint
-                        : AppColors.textHint,
-                    fontSize: 16.sp,
-                  ),
+                  style: widget.value != null
+                      ? TextStyle(
+                          color: AppColors.textHint,
+                          fontSize: 16.sp,
+                        )
+                      : (widget.hintTextStyle ??
+                          TextStyle(
+                            color: AppColors.textHint,
+                            fontSize: 16.sp,
+                          )),
                 ),
               ),
               SvgPicture.asset(
@@ -109,7 +115,6 @@ class _CustomDropdownState extends State<CustomDropdown> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header with close button
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
             child: Row(
@@ -117,7 +122,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
               children: [
                 Text(
                   widget.hintText,
-                  style: AppTypography.bodyLarge,
+                  style: widget.hintTextStyle ?? AppTypography.bodyLarge,
                 ),
                 TextButton(
                   onPressed: () => Navigator.pop(context),
@@ -132,7 +137,6 @@ class _CustomDropdownState extends State<CustomDropdown> {
             ),
           ),
           const Divider(height: 1, thickness: 1),
-          // Items list
           Expanded(
             child: ListView.separated(
               itemCount: widget.items.length,

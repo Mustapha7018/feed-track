@@ -3,7 +3,7 @@ import 'package:feed_track/core/theme/app_spacing.dart';
 import 'package:feed_track/core/theme/app_typography.dart';
 import 'package:feed_track/core/widgets/app_button.dart';
 import 'package:feed_track/core/widgets/appbar.dart';
-import 'package:feed_track/features/auth/presentation/pages/submit_weekly_report_screen.dart';
+import 'package:feed_track/features/auth/presentation/pages/weekly_report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -17,7 +17,11 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(isDashboard: true),
+      backgroundColor: AppColors.surface,
+      appBar: const CustomAppBar(
+        isDashboard: true,
+        title: 'John Doe',
+      ),
       body: Padding(
         padding: AppSpacing.bodyWithSection,
         child: SingleChildScrollView(
@@ -137,8 +141,7 @@ class DashboardScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context, SubmitWeeklyReportScreen.route());
+                        Navigator.push(context, WeeklyReportScreen.route());
                       },
                     ),
                   ],
@@ -204,9 +207,9 @@ class DashboardScreen extends StatelessWidget {
   // Notification List Item
   Widget _notificationItem(String text, Color dotColor) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 0.5.h),
       decoration: BoxDecoration(
-        color: Color(0xFFF6F7FB),
-      ),
+          color: Color(0xFFF6F7FB), borderRadius: BorderRadius.circular(5)),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 1.h),
         child: Row(

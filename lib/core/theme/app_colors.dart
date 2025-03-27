@@ -30,4 +30,9 @@ class AppColors {
   static const Color appred = Color(0xFFEA443E);
   static const Color appgold = Color(0xFFE89B0C);
   static const Color appgreen = Color(0xFF2ABA34);
+  
+  // Light versions of status colors (for backgrounds)
+  static const Color appredLight = Color(0xFFFCE8E7);
+  static const Color appgoldLight = Color(0xFFFEF3D7);
+  static const Color appgreenLight = Color(0xFFE5F7E7);
 }

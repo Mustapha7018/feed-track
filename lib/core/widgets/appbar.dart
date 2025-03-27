@@ -22,8 +22,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: isDashboard,
+      leadingWidth: isDashboard ? 10.w : 5.w,
       backgroundColor: isDashboard ? AppColors.primary : Colors.white,
       elevation: 0,
+      scrolledUnderElevation: 0,
+      surfaceTintColor: Colors.transparent,
       leading: isDashboard
           ? Padding(
               padding: EdgeInsets.all(2.w),
@@ -40,15 +43,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: onBackTap ?? () => Navigator.pop(context),
             ),
       title: isDashboard
-          ? Text(
-              'Welcome! John Doe',
-              style: AppTypography.bodyLarge.copyWith(
-                color: Colors.white,
+          ? RichText(
+              text: TextSpan(
+                text: 'Welcome! ',
+                style: AppTypography.bodyLarge.copyWith(
+                  color: AppColors.surface,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: [
+                  TextSpan(
+                    text: title,
+                    style: AppTypography.bodyLarge.copyWith(
+                      color: AppColors.surface,
+                    ),
+                  ),
+                ],
               ),
             )
           : Text(
               title,
-              style: AppTypography.bodyLarge,
+              style: AppTypography.bodyMedium,
             ),
       actions: [
         IconButton(

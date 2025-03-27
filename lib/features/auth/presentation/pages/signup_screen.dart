@@ -22,31 +22,33 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   String? _selectedRegion;
-  
+
   final List<String> _ghanaRegions = [
-    'Ahafo Region', 
-    'Ashanti Region', 
-    'Bono East Region', 
-    'Bono Region', 
-    'Central Region', 
-    'Eastern Region', 
-    'Greater Accra Region', 
-    'North East Region', 
-    'Northern Region', 
-    'Oti Region', 
-    'Savannah Region', 
-    'Upper East Region', 
-    'Upper West Region', 
-    'Volta Region', 
-    'Western North Region', 
+    'Ahafo Region',
+    'Ashanti Region',
+    'Bono East Region',
+    'Bono Region',
+    'Central Region',
+    'Eastern Region',
+    'Greater Accra Region',
+    'North East Region',
+    'Northern Region',
+    'Oti Region',
+    'Savannah Region',
+    'Upper East Region',
+    'Upper West Region',
+    'Volta Region',
+    'Western North Region',
     'Western Region'
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.surface,
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: AppColors.surface,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -141,7 +143,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushReplacement(context, LoginScreen.route());
+                            Navigator.pushReplacement(
+                                context, LoginScreen.route());
                           },
                       )
                     ],
