@@ -157,48 +157,55 @@ class ViewSchoolReport extends StatelessWidget {
 
               /// **Action Buttons**
               Row(
+                spacing: 2.h,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  AppButton(
-                    text: 'Back to List',
-                    backgroundColor: AppColors.secondary,
-                    type: ButtonType.outlined,
-                    icon: SvgPicture.asset(
-                      'assets/svgs/arrow_back.svg',
+                  Expanded(
+                    child: AppButton(
+                      text: 'Back to List',
+                      backgroundColor: AppColors.secondary,
+                      type: ButtonType.outlined,
+                      isFullWidth: true,
+                      icon: SvgPicture.asset(
+                        'assets/svgs/arrow_back.svg',
+                      ),
+                      iconPosition: IconPosition.left,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5.5.w,
+                        vertical: 1.5.h,
+                      ),
+                      borderRadius: 5,
+                      textStyle: TextStyle(
+                          fontSize: 13.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    iconPosition: IconPosition.left,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 5.5.w,
-                      vertical: 1.5.h,
-                    ),
-                    borderRadius: 5,
-                    textStyle: TextStyle(
-                        fontSize: 13.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
-                  AppButton(
-                    text: 'Download',
-                    type: ButtonType.filled,
-                    icon: SvgPicture.asset(
-                      'assets/svgs/download.svg',
+                  Expanded(
+                    child: AppButton(
+                      text: 'Download',
+                      type: ButtonType.filled,
+                      isFullWidth: true,
+                      icon: SvgPicture.asset(
+                        'assets/svgs/download.svg',
+                      ),
+                      iconPosition: IconPosition.left,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5.5.w,
+                        vertical: 1.5.h,
+                      ),
+                      borderRadius: 5,
+                      textStyle: TextStyle(
+                          fontSize: 13.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    iconPosition: IconPosition.left,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 5.5.w,
-                      vertical: 1.5.h,
-                    ),
-                    borderRadius: 5,
-                    textStyle: TextStyle(
-                        fontSize: 13.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
                 ],
               ),

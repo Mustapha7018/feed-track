@@ -3,7 +3,8 @@ import 'package:feed_track/core/theme/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AuthInputField extends StatefulWidget {
-  final String hintText;
+  final String? hintText;
+  final String? initialVal;
   final TextEditingController? controller;
   final bool isPassword;
   final TextInputType keyboardType;
@@ -32,7 +33,8 @@ class AuthInputField extends StatefulWidget {
 
   const AuthInputField({
     super.key,
-    required this.hintText,
+    this.hintText,
+    this.initialVal,
     this.controller,
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
@@ -129,6 +131,7 @@ class _AuthInputFieldState extends State<AuthInputField> {
       maxLines: widget.isPassword ? 1 : widget.maxLines,
       minLines: widget.minLines,
       autofocus: widget.autoFocus,
+      initialValue: widget.initialVal,
       cursorColor: AppColors.primary,
       style: TextStyle(
         fontSize: (widget.isPassword && _obscureText) ? 13.sp : 16.sp,

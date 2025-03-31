@@ -18,6 +18,7 @@ dependencies:
   dartz: ^0.10.1
   responsive_sizer: ^3.3.1
   flutter_svg: ^2.0.17
+  flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_test:

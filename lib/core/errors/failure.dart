@@ -5,9 +5,9 @@ abstract class Failure {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({required super.message});
+  const ServerFailure({required String message}) : super(message: message);
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({required super.message});
+  const CacheFailure({required String message}) : super(message: message);
 }

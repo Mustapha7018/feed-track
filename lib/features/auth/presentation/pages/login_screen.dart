@@ -3,6 +3,7 @@ import 'package:feed_track/core/theme/app_spacing.dart';
 import 'package:feed_track/core/theme/app_typography.dart';
 import 'package:feed_track/core/widgets/app_button.dart';
 import 'package:feed_track/features/auth/presentation/pages/dashboard_screen.dart';
+import 'package:feed_track/features/auth/presentation/pages/profile_screen.dart';
 import 'package:feed_track/features/auth/presentation/pages/signup_screen.dart';
 import 'package:feed_track/features/auth/presentation/widgets/auth_input_field.dart';
 import 'package:flutter/gestures.dart';
@@ -88,7 +89,9 @@ class LoginScreen extends StatelessWidget {
                 ),
                 height: 6.h,
                 isFullWidth: true,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, ProfileScreen.route());
+                },
               ),
               AppSpacing.verticalGapLarge,
               Align(

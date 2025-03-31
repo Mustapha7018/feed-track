@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isDashboard;
+  final bool isProfile;
   final String title;
   final VoidCallback? onMenuTap;
   final VoidCallback? onBackTap;
@@ -13,6 +14,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.isDashboard = false,
+    this.isProfile = false,
     this.title = '',
     this.onMenuTap,
     this.onBackTap,
@@ -27,6 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       scrolledUnderElevation: 0,
       surfaceTintColor: Colors.transparent,
+      automaticallyImplyLeading: false,
       leading: isDashboard
           ? Padding(
               padding: EdgeInsets.all(2.w),
@@ -34,14 +37,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 'assets/svgs/logo.svg',
               ),
             )
-          : IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black,
-                size: 18.sp,
-              ),
-              onPressed: onBackTap ?? () => Navigator.pop(context),
-            ),
+          : isProfile
+              ? null
+              : IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.black,
+                    size: 18.sp,
+                  ),
+                  onPressed: onBackTap ?? () => Navigator.pop(context),
+                ),
       title: isDashboard
           ? RichText(
               text: TextSpan(

@@ -4,8 +4,8 @@ import 'package:feed_track/core/theme/app_typography.dart';
 import 'package:feed_track/core/widgets/appbar.dart';
 import 'package:feed_track/core/widgets/custom_dropdown.dart';
 import 'package:feed_track/core/widgets/list_tile.dart';
+import 'package:feed_track/core/widgets/search_input.dart';
 import 'package:feed_track/features/auth/presentation/pages/view_school_report.dart';
-import 'package:feed_track/features/auth/presentation/widgets/auth_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -72,17 +72,7 @@ class _SubmittedWeeklyReportScreenState
                 style: AppTypography.h4,
               ),
               SizedBox(height: 1.h),
-              AuthInputField(
-                hintText: 'Search by school name...',
-                prefixIcon: const Icon(Icons.search),
-                keyboardType: TextInputType.text,
-                horizontalPadding: 2.5.w,
-                verticalPadding: 2.5.w,
-                borderRadius: 5,
-                hintTextStyle: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.textHint,
-                ),
-              ),
+              SearchInput(hintText: 'Search by school name...',),
               SizedBox(height: 1.h),
               Row(
                 children: [
