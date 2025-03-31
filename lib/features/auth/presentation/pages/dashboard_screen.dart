@@ -3,6 +3,9 @@ import 'package:feed_track/core/theme/app_spacing.dart';
 import 'package:feed_track/core/theme/app_typography.dart';
 import 'package:feed_track/core/widgets/app_button.dart';
 import 'package:feed_track/core/widgets/appbar.dart';
+import 'package:feed_track/features/auth/presentation/pages/contact_support_screen.dart';
+import 'package:feed_track/features/auth/presentation/pages/edit_profile_screen.dart';
+import 'package:feed_track/features/auth/presentation/pages/submitted_reports_screen.dart';
 import 'package:feed_track/features/auth/presentation/pages/weekly_report_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -194,9 +197,15 @@ class DashboardScreen extends StatelessWidget {
               SizedBox(height: 2.h),
 
               // Buttons
-              _dashboardButton("View Submitted Report", () {}),
-              _dashboardButton("Update Profile", () {}),
-              _dashboardButton("Contact Support", () {}),
+              _dashboardButton("View Submitted Report", () {
+                Navigator.push(context, SubmittedWeeklyReportScreen.route());
+              }),
+              _dashboardButton("Update Profile", () {
+                Navigator.push(context, EditProfileScreen.route());
+              }),
+              _dashboardButton("Contact Support", () {
+                Navigator.push(context, ContactSupportScreen.route());
+              }),
             ],
           ),
         ),
@@ -232,7 +241,7 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  // Reusable Dashboard Buttons
+  // Dashboard Buttons
   Widget _dashboardButton(String text, VoidCallback onTap) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
